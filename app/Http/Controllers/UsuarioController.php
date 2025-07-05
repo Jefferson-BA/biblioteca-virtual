@@ -8,61 +8,54 @@ use Illuminate\Support\Facades\DB;
 class UsuarioController extends Controller
 {
     public function mostrarFormularioRegistro()
-    {
-        return view('usuarios.registro');
-    }
-
+{
+    $roles = DB::select("SELECT id, nombre FROM roles WHERE LOWER(nombre) IN ('admin', 'usuario')");
+    return view('usuarios.registro', compact('roles'));
+}
     public function mostrarFormularioLogin()
     {
         return view('usuarios.login');
     }
 
     public function registrar(Request $request)
-    {
-        try {
-            DB::unprepared("
-                BEGIN 
-                    registrar_usuario(
-                        '{$request->nombre}', 
-                        '{$request->correo}', 
-                        '{$request->contrasena}', 
-                        {$request->rol_id}
-                    ); 
-                END;
-            ");
-            return back()->with('success', 'Usuario registrado correctamente');
-        } catch (\Exception $e) {
-            return back()->with('error', $e->getMessage());
-        }
-    }
-    
-    protected function authenticated(Request $request, $user)
 {
-    $rol = DB::table('usuarios')
-             ->join('roles', 'usuarios.rol_id', '=', 'roles.id')
-             ->where('usuarios.id', $user->id)
-             ->select('roles.nombre')
-             ->first();
-
-    if ($rol && $rol->nombre === 'admin') {
-        return redirect()->route('libros.index'); // Vista de administración
+    try {
+        DB::unprepared("
+            BEGIN 
+                registrar_usuario(
+                    '{$request->nombre}', 
+                    '{$request->correo}', 
+                    '{$request->contrasena}', 
+                    {$request->rol_id}
+                ); 
+            END;
+        ");
+        return redirect()->route('login')->with('success', 'Usuario registrado correctamente. Ahora puedes iniciar sesión.');
+    } catch (\Exception $e) {
+        return back()->with('error', $e->getMessage());
     }
-
-    return redirect()->route('libros.vista_usuario'); // Solo para visualizar libros
 }
-
 
     public function login(Request $request)
     {
         try {
             $usuario = DB::select("
-                SELECT COUNT(*) AS total 
-                FROM usuarios 
-                WHERE correo = ? AND contrasena = ?
+                SELECT u.*, r.nombre AS rol_nombre
+                FROM usuarios u
+                JOIN roles r ON u.rol_id = r.id
+                WHERE u.correo = ? AND u.contrasena = ? AND ROWNUM = 1
             ", [$request->correo, $request->contrasena]);
 
-            if ($usuario[0]->total > 0) {
-                return back()->with('success', 'Inicio de sesión exitoso');
+            if ($usuario && count($usuario) > 0) {
+                $usuario = (array)$usuario[0];
+                session(['usuario' => $usuario]);
+
+                // Redirigir según el rol
+                if (strtolower($usuario['rol_nombre']) === 'admin') {
+    return redirect()->route('libros.index');
+} else {
+    return redirect()->route('libros.vista_usuario');
+}
             } else {
                 return back()->with('error', 'Credenciales incorrectas');
             }
