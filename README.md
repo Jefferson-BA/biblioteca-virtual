@@ -33,7 +33,7 @@ Este proyecto implementa un sistema de gestión de biblioteca con autenticación
 1. **Clona el repositorio**
 
    ```bash
-   git clone https://github.com/TU_USUARIO/BibliotecaVirtual-Oracle.git
+   git clone https://github.com/Jefferson-BA/biblioteca-virtual.git
    cd BibliotecaVirtual-Oracle
    ```
 
