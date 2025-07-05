@@ -155,7 +155,32 @@ Accede desde: [http://localhost:8000](http://localhost:8000)
 - **Reportes:** (opcional) Libros más prestados, préstamos vencidos (solo bibliotecario).
 
 ---
+...
 
+## 📦 Requisitos Previos
+
+- **PHP** >= 8.1
+- **Composer**
+- **Node.js** y **NPM**
+- **Oracle Database 21c** o superior
+- **Oracle Instant Client 19** o superior ([descargar aquí](https://www.oracle.com/database/technologies/instant-client/downloads.html))
+- **Extensión pdo_oci8** habilitada en tu `php.ini`  
+  (o instala Yajra OCI8 para Laravel)
+- **Laravel CLI**
+
+---
+
+## 🛠 Versiones utilizadas en desarrollo
+
+- **PHP:** 8.2.28
+- **Composer:** 2.8.8
+- **Node.js:** 22.15.0
+- **NPM:** 10.9.2
+- **Laravel:** 11.45.1
+- **Oracle Database:** 21c (recomendado)
+- **Yajra OCI8:** 11.6.4
+
+---
 ## ⚠️ Notas Especiales
 
 - Este proyecto hace uso de **procedimientos PL/SQL** para registrar, actualizar y eliminar usuarios, libros y préstamos.
