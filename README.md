@@ -118,7 +118,7 @@ Este proyecto implementa un sistema de gestión de biblioteca con autenticación
 ## 📝 Autor
 
 Desarrollado por Jefferson Bautista Aguilera – Perú 🇵🇪  
-Repositorio GitHub: [https://github.com/TU_USUARIO/BibliotecaVirtual-Oracle](https://github.com/Jefferson-BA/BibliotecaVirtual-Oracle)
+Repositorio GitHub: [https://github.com/Jefferson-BA/biblioteca-virtual?tab=readme-ov-file](https://github.com/Jefferson-BA/BibliotecaVirtual-Oracle)
 
 ---
 
