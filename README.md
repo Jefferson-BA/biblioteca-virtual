@@ -101,8 +101,8 @@ Este proyecto implementa un sistema de gestión de biblioteca con autenticación
 
 | Rol           | Email               | Contraseña   |
 |---------------|---------------------|--------------|
-| Bibliotecario | admin@gmail.com     | admin123     |
-| Usuario       | usuario@gmail.com   | usuario123   |
+| Bibliotecario | admin@gmail.com     | 123    |
+| Usuario       | usuario@gmail.com   | 123   |
 
 ---
 
