@@ -68,7 +68,7 @@ Este proyecto implementa un sistema de gestión de biblioteca con autenticación
 
 ```bash
 git clone https://github.com/Jefferson-BA/biblioteca-virtual.git
-cd biblioteca-virtual
+cd biblioteca-virtual(para confirmar si estas en el archivo correcto)
 ```
 
 ### 2. Instala dependencias PHP y JS
